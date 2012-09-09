@@ -1,0 +1,33 @@
+.ds q \N'34'
+.TH rst2mdown 1
+.SH NAME
+rst2mdown \- a javascript reStructuredText to markdown converter
+.SH SYNOPSIS
+.nf
+.B rst2mdown [\-o output] [\-i input] [\-th]
+.fi
+.SH DESCRIPTION
+.B rst2mdown
+is a conversion utility for converting reStructuredText markup into markdown
+markup.
+.SH OPTIONS
+.TP
+.BI \-o,\ \-\-output\ [output]
+Specify file output. If none is specified, write to stdout.
+.TP
+.BI \-i,\ \-\-input\ [input]
+Specify file input, otherwise use last argument as input file. If no input file
+is specified, read from stdin.
+.SH EXAMPLES
+.TP
+cat in.md | rst2mdown > out.html
+.TP
+echo "hello *world*" | marked
+.TP
+marked -o out.html in.md
+.TP
+marked --output="hello world.html" -i in.md
+.SH BUGS
+Please report any bugs to https://github.com/kitsonk/rst2mdown.
+.SH LICENSE
+Copyright (c) 2012, Kitson P. Kelly (New BSD License)

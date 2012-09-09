@@ -1,0 +1,4 @@
+>>> print 'Python-specific usage examples; begun with ">>>"'
+Python-specific usage examples; begun with ">>>"
+>>> print '(cut and pasted from interactive Python sessions)'
+(cut and pasted from interactive Python sessions)
