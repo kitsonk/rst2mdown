@@ -22,7 +22,71 @@ var help = function(){
 };
 
 var main = function(argv){
-	rst2mdown();
+	var files = [],
+		data = "",
+		tokens,
+		input,
+		output;
+
+	function getArg(){
+		var arg = argv.shift();
+		arg = arg.split("=");
+		if(arg.length > 1){
+			argv.unshift(arg.slice(1).join("="));
+		}
+		return arg[0];
+	}
+
+	while(argv.length){
+		arg = getArg();
+		switch(arg){
+			case "-i":
+			case "--input":
+				input = argv.shift();
+				break;
+			case "-o":
+			case "--output":
+				output = argv.shift();
+				break;
+			case "-t":
+			case "--tokens":
+				tokens = true;
+				break;
+			case "-h":
+			case "--help":
+				return help();
+			default:
+				files.push(arg);
+		}
+	}
+
+	if(!input){
+		if(files.length <= 2){
+			var stdin = process.stdin;
+
+			stdin.setEncoding("utf8");
+			stdin.resume();
+
+			stdin.on("data", function(text){
+				data += text;
+			});
+
+			stdin.on("end", write);
+
+			return;
+		}
+		input = files.pop();
+	}
+
+	data = fs.readFileSync(input, "utf8");
+
+	data = tokens ? JSON.stringify(rst2mdown.lexer(data)) : rst2mdown(data);
+
+	if(!output){
+		process.stdout.write(data + "\n");
+	}else{
+		fs.writeFileSync(output, data, "utf8");
+	}
 };
 
 if (!module.parent) {
