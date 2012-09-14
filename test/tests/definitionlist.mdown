@@ -4,8 +4,10 @@
 </dl>
 <dl>
   <dt>term 2</dt>
-  <dd>Definition 2, paragraph 1.<br />
-  Definition 2, paragraph 2.</dd>
+  <dd>
+    <p>Definition 2, paragraph 1.</p>
+    <p>Definition 2, paragraph 2.</p>
+  </dd>
 </dl>
 <dl>
   <dt>term 3 : classifier</dt>
