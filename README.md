@@ -12,6 +12,14 @@ $ npm install rst2mdown
 
 Or you can download the [.zip][zip] or [.tar.gz][tar], extract and use.
 
+## Testing ##
+
+You can test the installation be using the test script from the root directory:
+
+```bash
+$ node test
+```
+
 ## Usage ##
 
 You will require [NodeJS][node] installed.  To take in a reStructuredText file and output a markdown one, you would
