@@ -29,6 +29,10 @@ run the following command from the root of the install:
 $ bin/rst2mdown -i somefile.rst -o somefile.mdown
 ```
 
+Converting from reStructuredText to markdown is not straight forward.  Generally speaking, reStructuredText provides
+significantly more features than are supportable via markdown.  Please refer to the [Conversion Notes][conv-notes] to
+understand how particular aspects of the conversion are handled. 
+
 ## License ##
 
 This code is licensed under the [New BSD License][license] and is Copyright (c) 2012 Kitson P. Kelly.
@@ -48,3 +52,4 @@ This code is possible through documentation and concepts from other projects:
 [phpmde]: http://michelf.ca/projects/php-markdown/extra/
 [node]: http://nodejs.org/
 [license]: /kitsonk/rst2mdown/blob/master/LICENSE
+[conv-notes]: /kitsonk/rst2mdown/wiki/Conversion-Notes
