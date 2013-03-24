@@ -1,7 +1,7 @@
 {
     "name": "rst2mdown",
     "description": "A conversion utility for converting reStructuredText markup to markdown",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "keywords": ["node", "reStructuredText", "markdown"],
     "maintainers": [{
         "name": "Kitson Kelly"
@@ -10,7 +10,7 @@
         "name": "Kitson Kelly"
     }],
     "licenses": [{
-        "type": "BSD",
+        "type": "BSD-3-Clause",
         "url": "https://github.com/kitsonk/rst2mdown/blob/master/LICENSE"
     }],
     "bugs": "https://github.com/kitsonk/rst2mdown/issues",
@@ -25,6 +25,5 @@
     "main": "./lib/rst2mdown.js",
     "bin": "./bin/rst2mdown",
     "man": "./man/rst2modown.1",
-    "readme": "\n# rst2mdown #\n\nA conversion utility for converting reStructuredText markup to markdown",
     "homepage": "http://kitsonk.github.com/rst2mdown/"
 }

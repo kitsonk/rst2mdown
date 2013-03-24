@@ -12,7 +12,7 @@ var load = function(){
 	files = {};
 
 	var list = fs.readdirSync(dir).filter(function(file){
-			return !/\.mdown$/.test(file);
+			return !/\.md$/.test(file);
 		}).sort(function(a, b){
 			a = path.basename(a).toLowerCase().charCodeAt(0);
 			b = path.basename(b).toLowerCase().charCodeAt(0);
@@ -23,11 +23,11 @@ var load = function(){
 
 	for(var i = 0, l = list.length; i < l; i++){
 		file = path.join(dir, list[i]);
-		expectedFile = file.replace(/[^.]+$/, "mdown");
+		expectedFile = file.replace(/[^.]+$/, "md");
 		if(fs.existsSync(expectedFile)){
 			files[path.basename(file)] = {
 				source: fs.readFileSync(file, "utf8"),
-				expected: fs.readFileSync(file.replace(/[^.]+$/, "mdown"), "utf8")
+				expected: fs.readFileSync(file.replace(/[^.]+$/, "md"), "utf8")
 			};
 		}
 	}

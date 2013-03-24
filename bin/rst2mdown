@@ -5,12 +5,14 @@
  * Copyright (c) 2012, Kitson P. Kelly (New BSD License)
  */
 
-var fs = require("fs"),
-	util = require("util"),
-	rst2mdown = require("../");
+/* global process */
+/* global module */
 
-var help = function(){
-	var spawn = require("child_process").spawn,
+var fs = require('fs'),
+	rst2mdown = require('../');
+
+function help() {
+	var spawn = require('child_process').spawn,
 		options = {
 			cwd: process.cwd(),
 			env: process.env,
@@ -18,80 +20,108 @@ var help = function(){
 			customFds: [0, 1, 2]
 		};
 
-	spawn("man", [ __dirname + "/../man/rst2mdown.1"], options);
-};
+	spawn('man', [ __dirname + '/../man/rst2mdown.1'], options);
+}
 
-var main = function(argv){
+function main(argv, callback) {
 	var files = [],
-		data = "",
+		options = {},
 		tokens,
 		input,
 		output;
 
-	function getArg(){
+	function getArg() {
 		var arg = argv.shift();
-		arg = arg.split("=");
-		if(arg.length > 1){
-			argv.unshift(arg.slice(1).join("="));
+		arg = arg.split('=');
+		if (arg.length > 1) {
+			argv.unshift(arg.slice(1).join('='));
 		}
 		return arg[0];
 	}
 
-	while(argv.length){
-		arg = getArg();
-		switch(arg){
-			case "-i":
-			case "--input":
-				input = argv.shift();
-				break;
-			case "-o":
-			case "--output":
-				output = argv.shift();
-				break;
-			case "-t":
-			case "--tokens":
-				tokens = true;
-				break;
-			case "-h":
-			case "--help":
-				return help();
-			default:
-				files.push(arg);
+	while (argv.length) {
+		var arg = getArg();
+		switch (arg) {
+		case '-i':
+		case '--input':
+			input = argv.shift();
+			break;
+		case '-o':
+		case '--output':
+			output = argv.shift();
+			break;
+		case '-t':
+		case '--tokens':
+			tokens = true;
+			break;
+		case '-h':
+		case '--help':
+			return help();
+		default:
+			files.push(arg);
 		}
 	}
 
-	if(!input){
-		if(files.length <= 2){
-			var stdin = process.stdin;
-
-			stdin.setEncoding("utf8");
-			stdin.resume();
-
-			stdin.on("data", function(text){
-				data += text;
-			});
-
-			stdin.on("end", write);
-
-			return;
+	function getData(callback) {
+		if (!input) {
+			if (files.length <= 2) {
+				return getStdin(callback);
+			}
+			input = files.pop();
 		}
-		input = files.pop();
+		return fs.readFileSync(input, 'utf8', callback);
 	}
 
-	data = fs.readFileSync(input, "utf8");
+	return getData(function (err, data) {
+		if (err) {
+			return callback(err);
+		}
 
-	data = tokens ? JSON.stringify(rst2mdown.lexer(data)) : rst2mdown(data);
+		data = tokens ? JSON.stringify(rst2mdown.lexer(data, options), null, 2) : rst2mdown(data, options);
 
-	if(!output){
-		process.stdout.write(data + "\n");
-	}else{
-		fs.writeFileSync(output, data, "utf8");
+		if (!output) {
+			process.stdout.write(data + '\n');
+			return callback();
+		}
+
+		return fs.writeFile(output, data, callback);
+	});
+}
+
+function getStdin(callback) {
+	var stdin = process.stdin,
+		buff = '';
+
+	stdin.setEncoding('utf8');
+
+	stdin.on('data', function (data) {
+		buff += data;
+	});
+
+	stdin.on('error', function (err) {
+		return callback(err);
+	});
+
+	stdin.on('end', function () {
+		return callback(null, buff);
+	});
+
+	try {
+		stdin.resume();
 	}
-};
+	catch (e) {
+		callback(e);
+	}
+}
 
 if (!module.parent) {
-	process.title = "rst2mdown";
-	main(process.argv.slice());
+	process.title = 'rst2mdown';
+	main(process.argv.slice(), function(err, code) {
+		if (err) {
+			throw err;
+		}
+		return process.exit(code || 0);
+	});
 } else {
 	module.exports = main;
 }
