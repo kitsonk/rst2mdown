@@ -7,6 +7,7 @@
 
 /* global process */
 /* global module */
+/* global __dirname */
 
 var fs = require('fs'),
 	rst2mdown = require('../');
@@ -116,7 +117,7 @@ function getStdin(callback) {
 
 if (!module.parent) {
 	process.title = 'rst2mdown';
-	main(process.argv.slice(), function(err, code) {
+	main(process.argv.slice(), function (err, code) {
 		if (err) {
 			throw err;
 		}
