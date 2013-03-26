@@ -1,3 +1,11 @@
+Here is an example with continuation line.
+
+| Lend us a couple of bob till Thursday.
+| I'm absolutely skint.
+| But I'm expecting a postal order and I can pay you back
+  as soon as it comes.
+| Love, Ewan.
+
 Take it away, Eric the Orchestra Leader!
 
     | A one, two, a one two three four
