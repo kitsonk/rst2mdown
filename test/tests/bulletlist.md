@@ -1,7 +1,6 @@
 - This is the first bullet list item.  The blank line above the
   first list item is required; blank lines between list items
   (such as below this paragraph) are optional.
-
 - This is the first paragraph in the second item in the list.
   
   This is the second paragraph in the second item in the list.
@@ -13,8 +12,8 @@
     the text blocks above.  A sublist is a new list so requires a
     blank line above and below.
 
-
 - This is the third item of the main list.
   
 
 This paragraph is not part of the list.
+
