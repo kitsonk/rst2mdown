@@ -1,6 +1,6 @@
 # rst2mdown #
 
-This is a utility for converting from reStructuredText markup to markdown markup.
+This is a utility for converting from reStructuredText mark-up to markdown mark-up.
 
 ## Installation ##
 
@@ -26,7 +26,29 @@ You will require [NodeJS][node] installed.  To take in a reStructuredText file a
 run the following command from the root of the install:
 
 ```bash
-$ bin/rst2mdown -i somefile.rst -o somefile.mdown
+$ bin/rst2mdown -i somefile.rst -o somefile.md
+```
+
+Also, the binary version also support `stdin` and `stdout`:
+
+```bash
+$ bin/rst2mdown < somefile.rst > somefile.md
+```
+
+And module supports both CommonJS and AMD loading.  To load as CommonJS module under node:
+
+```js
+var rst2mdown = require('rst2mdown');
+
+var mdown = rst2mdown(someReStructuredText);
+```
+
+Or as an AMD module:
+
+```js
+require(['rst2mdown'], function (rst2mdown) {
+	var mdown = rst2mdown(someReStructuredText);
+});
 ```
 
 Converting from reStructuredText to markdown is not straight forward.  Generally speaking, reStructuredText provides
