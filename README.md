@@ -67,11 +67,11 @@ This code is possible through documentation and concepts from other projects:
 * [marked][marked] - A markdown parser and compiler that is built for speed.
 * [PHP Markdown Extra][phpmde] - Extension to markdown syntax for PHP Markdown.
 
-[zip]: /kitsonk/rst2mdown/zipball/master
-[tar]: /kitsonk/rst2mdown/tarball/master
+[zip]: https://github.com/kitsonk/rst2mdown/zipball/master
+[tar]: https://github.com/kitsonk/rst2mdown/tarball/master
 [rst]: http://docutils.sourceforge.net/rst.html
-[marked]: /chjj/marked/
+[marked]: https://github.com/chjj/marked/
 [phpmde]: http://michelf.ca/projects/php-markdown/extra/
 [node]: http://nodejs.org/
-[license]: /kitsonk/rst2mdown/blob/master/LICENSE
-[conv-notes]: /kitsonk/rst2mdown/wiki/Conversion-Notes
+[license]: https://github.com/kitsonk/rst2mdown/blob/master/LICENSE
+[conv-notes]: https://github.com/kitsonk/rst2mdown/wiki/Conversion-Notes
