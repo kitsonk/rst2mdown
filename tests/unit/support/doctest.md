@@ -12,5 +12,3 @@ The following is a literal block:
 reStructuredText.  It *will* be recognized by the doctest
 module, though!
 ```
-
-
